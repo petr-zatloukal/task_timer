@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
 
-function App() {
+import useTimer from "./useTimer";
+
+export default function App() {
+  const { isRunning, start, stop, seconds } = useTimer(5);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <h1>useTimer custom hook</h1>
+        <h2>{isRunning ? seconds : "No Timer Running"}</h2>
+        <button onClick={start} disabled={isRunning}>
+          Start Timer
+        </button>
+        <button onClick={stop} disabled={!isRunning}>
+          Stop Timer
+        </button>
+      </div>
   );
 }
-
-export default App;
